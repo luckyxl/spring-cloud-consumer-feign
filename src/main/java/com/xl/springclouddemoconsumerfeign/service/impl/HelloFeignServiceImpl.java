@@ -12,8 +12,19 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class HelloFeignServiceImpl implements HelloFeignService {
+    private String error = "this message from hystrix";
     @Override
     public String helloWorldFeignConsumer() {
-        return "this message from hystrix";
+        return error;
+    }
+
+    @Override
+    public String add(String schoolName, String userName) {
+        return error;
+    }
+
+    @Override
+    public String update(Integer schoolId, String schoolName, Integer userId, String userName) {
+        return error;
     }
 }

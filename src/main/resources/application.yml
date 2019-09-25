@@ -1,8 +1,38 @@
 server:
   port: 8782
+
+public-key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALqXe1ncw3rJujiPlLZOrs4NawCca77oAl9y3A5OtAN9InIGPO1+PuEOu1LlSlVNlVIg5UHvWGAaWg1ZUwmZxtcCAwEAAQ==
 spring:
   application:
     name: springclouddemoconsumerfeign
+  datasource:
+    url: jdbc:mysql://localhost:3306/tx-manager?useUnicode=true&characterEncoding=utf8&tinyInt1isBit=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: UKQ9ohlOw0VDS4Br0eSuMpohUZt3h+8tujfL+KCyc5UFYFRr1dMquRDCdrWyVQb2ERTUhOdtbHFaqczRYolI2A==
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      validationQuery: SELECT 1
+      initialSize: 2
+      minIdle: 10
+      maxWait: 60000
+      maxActive: 20
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 180000
+      testOnBorrow: true
+      testWhileIdle: true
+      removeAbandoned: true
+      removeAbandonedTimeout: 1800
+      logAbandoned: true
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 100
+      web-stat-filter:
+        session-stat-enable: flase
+      filter:
+        config:
+          enabled: true
+      connect-properties:
+        config.decrypt: true
+        config.decrypt.key: ${public-key}
 eureka:
   client:
     service-url:
@@ -10,3 +40,7 @@ eureka:
 feign:
   hystrix:
     enabled: true
+
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070
